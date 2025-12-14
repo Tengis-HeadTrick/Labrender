@@ -1,32 +1,212 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Movie App</title>
+<meta charset="UTF-8" />
+<title>🎬 MovieDb | Neo4j + Flask</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1f2933, #0b0f14);
+  color: #fff;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  padding: 30px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header p {
+  opacity: 0.8;
+}
+
+/* ---------- CONTAINER ---------- */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ---------- GLASS CARD ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+}
+
+/* ---------- FORMS ---------- */
+form {
+  display: grid;
+  gap: 15px;
+}
+
+input, button {
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+input {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+input::placeholder {
+  color: #cbd5e1;
+}
+
+button {
+  cursor: pointer;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: white;
+  font-weight: 600;
+  transition: transform .2s, box-shadow .2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(99,102,241,.6);
+}
+
+/* ---------- MOVIE GRID ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+/* ---------- MOVIE CARD ---------- */
+.movie {
+  background: rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 20px;
+  transition: transform .25s, box-shadow .25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.15), transparent);
+  opacity: 0;
+  transition: .4s;
+}
+
+.movie:hover::before {
+  opacity: 1;
+}
+
+.movie:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 40px rgba(0,0,0,.6);
+}
+
+.movie h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.movie span {
+  font-size: .9rem;
+  opacity: .85;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(99,102,241,.25);
+  font-size: .8rem;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: .6;
+}
+</style>
 </head>
+
 <body>
-<h2>🎬 Movie List</h2>
 
-<form method="post" action="/add">
-    <input name="title" placeholder="Title" required>
-    <input name="year" placeholder="Year" required>
-    <input name="genre" placeholder="Genre" required>
-    <button>Add Movie</button>
-</form>
+<header>
+  <h1>🎬 MovieDb</h1>
+  <p>Flask + Neo4j AuraDB + Render</p>
+</header>
 
-<hr>
+<div class="container">
 
-<form method="get" action="/filter">
-    <input name="genre" placeholder="Filter by genre">
-    <button>Filter</button>
-</form>
+  <!-- ADD MOVIE -->
+  <div class="glass">
+    <h2>➕ Add Movie</h2>
+    <form method="post" action="/add">
+      <input name="title" placeholder="Movie title" required>
+      <input name="year" type="number" placeholder="Release year" required>
+      <input name="genre" placeholder="Genre (Sci-Fi, Drama…)" required>
+      <button>Add Movie</button>
+    </form>
+  </div>
 
-<ul>
-    {% for movie in movies %}
-    <li>
-        {{ movie["title"] }} ({{ movie["year"] }}) - {{ movie["genre"] }}
-    </li>
-    {% endfor %}
-</ul>
+  <!-- FILTER -->
+  <div class="glass">
+    <h2>🔍 Filter by Genre</h2>
+    <form method="get" action="/filter">
+      <input name="genre" placeholder="Enter genre">
+      <button>Filter</button>
+    </form>
+  </div>
+
+  <!-- MOVIES -->
+  <div class="glass">
+    <h2>🎞 Movie Collection</h2>
+
+    {% if movies %}
+    <div class="grid">
+      {% for movie in movies %}
+      <div class="movie">
+        <h3>{{ movie["title"] }}</h3>
+        <span>📅 {{ movie["year"] }}</span>
+        <div class="tag">🎭 {{ movie["genre"] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <p>No movies found.</p>
+    {% endif %}
+  </div>
+
+</div>
+
+<footer>
+  © 2025 | MovieDb | Neo4j AuraDB
+</footer>
 
 </body>
 </html>
