@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>🎬 MovieDb | Tengis</title>
+<title> MovieDb | Tengis</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -37,14 +37,14 @@ footer{text-align:center;padding:15px;font-size:.85rem;opacity:.7}
 <body>
 
 <header>
-  <h1>🎬 MovieDb</h1>
-  <p>Flask · Neo4j · Render<br>👑 Owner: <b>Tengis</b></p>
+  <h1> MovieDb</h1>
+  <p>👑 Owner: <b>Tengis</b></p>
 </header>
 
 <div class="container">
 
 <div class="glass">
-<h2>➕ Add Movie</h2>
+<h2> Add Movie</h2>
 <form method="post" action="/add">
 <input name="title" placeholder="Movie title" required>
 <input type="number" name="year" placeholder="Year" required>
@@ -54,14 +54,14 @@ footer{text-align:center;padding:15px;font-size:.85rem;opacity:.7}
 </div>
 
 <div class="glass">
-<h2>🔍 Filter</h2>
+<h2> Filter</h2>
 <form method="get" action="/filter">
 <input name="genre" placeholder="Enter genre">
 <button>Filter</button>
 </form>
 
 <form method="get" action="/" style="margin-top:10px">
-<button class="show-all">🎬 Бүх киног харах</button>
+<button class="show-all"> Бүх киног харах</button>
 </form>
 </div>
 
@@ -74,7 +74,7 @@ footer{text-align:center;padding:15px;font-size:.85rem;opacity:.7}
 {% set g = movie["genre"]|lower %}
 <div class="movie">
 <h3>{{ movie["title"] }}</h3>
-<span>📅 {{ movie["year"] }}</span><br>
+<span> {{ movie["year"] }}</span><br>
 
 <div class="tag
 {% if 'sci' in g %}genre-sci
@@ -85,7 +85,7 @@ footer{text-align:center;padding:15px;font-size:.85rem;opacity:.7}
 {% elif 'horror' in g %}genre-horror
 {% else %}genre-default
 {% endif %}">
-🎭 {{ movie["genre"] }}
+  {{ movie["genre"] }}
 </div>
 </div>
 {% endfor %}
