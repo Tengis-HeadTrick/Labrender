@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>🎬 MovieDb | Neo4j + Flask</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>🎬 MovieDb | Tengis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -16,74 +15,73 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #1f2933, #0b0f14);
+  background: radial-gradient(circle at top, #1e293b, #020617);
   color: #fff;
 }
 
 /* ---------- HEADER ---------- */
 header {
-  padding: 30px;
+  padding: 25px 15px;
   text-align: center;
 }
 
 header h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   background: linear-gradient(90deg, #38bdf8, #818cf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 header p {
-  opacity: 0.8;
+  opacity: 0.85;
+  font-size: 0.95rem;
 }
 
 /* ---------- CONTAINER ---------- */
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
-  padding: 20px;
+  padding: 15px;
 }
 
-/* ---------- GLASS CARD ---------- */
+/* ---------- GLASS ---------- */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 22px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.45);
 }
 
-/* ---------- FORMS ---------- */
+/* ---------- FORM ---------- */
 form {
   display: grid;
-  gap: 15px;
+  gap: 12px;
 }
 
 input, button {
   padding: 14px;
   border-radius: 12px;
   border: none;
-  outline: none;
   font-size: 1rem;
 }
 
 input {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.18);
   color: #fff;
 }
 
 input::placeholder {
-  color: #cbd5e1;
+  color: #cbd5f5;
 }
 
 button {
-  cursor: pointer;
   background: linear-gradient(135deg, #38bdf8, #6366f1);
-  color: white;
+  color: #fff;
   font-weight: 600;
-  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+  transition: .25s;
 }
 
 button:hover {
@@ -91,44 +89,29 @@ button:hover {
   box-shadow: 0 10px 25px rgba(99,102,241,.6);
 }
 
-/* ---------- MOVIE GRID ---------- */
+/* ---------- GRID ---------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
 }
 
 /* ---------- MOVIE CARD ---------- */
 .movie {
   background: rgba(255,255,255,0.12);
-  border-radius: 18px;
-  padding: 20px;
-  transition: transform .25s, box-shadow .25s;
-  position: relative;
-  overflow: hidden;
-}
-
-.movie::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,.15), transparent);
-  opacity: 0;
-  transition: .4s;
-}
-
-.movie:hover::before {
-  opacity: 1;
+  border-radius: 16px;
+  padding: 18px;
+  transition: .25s;
 }
 
 .movie:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 40px rgba(0,0,0,.6);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px rgba(0,0,0,.6);
 }
 
 .movie h3 {
-  margin: 0;
-  font-size: 1.2rem;
+  margin: 0 0 5px;
+  font-size: 1.15rem;
 }
 
 .movie span {
@@ -136,20 +119,38 @@ button:hover {
   opacity: .85;
 }
 
+/* ---------- GENRE TAGS ---------- */
 .tag {
   display: inline-block;
   margin-top: 10px;
   padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(99,102,241,.25);
   font-size: .8rem;
+  font-weight: 600;
 }
+
+/* genre colors */
+.genre-sci-fi { background: #0ea5e9; }
+.genre-drama { background: #f43f5e; }
+.genre-romance { background: #ec4899; }
+.genre-action { background: #f97316; }
+.genre-comedy { background: #22c55e; }
+.genre-horror { background: #7c3aed; }
+.genre-default { background: #64748b; }
 
 /* ---------- FOOTER ---------- */
 footer {
   text-align: center;
-  padding: 20px;
-  opacity: .6;
+  padding: 20px 10px;
+  font-size: .85rem;
+  opacity: .7;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
 }
 </style>
 </head>
@@ -158,7 +159,7 @@ footer {
 
 <header>
   <h1>🎬 MovieDb</h1>
-  <p>Flask + Neo4j AuraDB + Render</p>
+  <p>Flask · Neo4j AuraDB · Render<br>👑 Owner: <b>Tengis</b></p>
 </header>
 
 <div class="container">
@@ -169,7 +170,7 @@ footer {
     <form method="post" action="/add">
       <input name="title" placeholder="Movie title" required>
       <input name="year" type="number" placeholder="Release year" required>
-      <input name="genre" placeholder="Genre (Sci-Fi, Drama…)" required>
+      <input name="genre" placeholder="Genre (Sci-Fi, Drama...)" required>
       <button>Add Movie</button>
     </form>
   </div>
@@ -190,10 +191,22 @@ footer {
     {% if movies %}
     <div class="grid">
       {% for movie in movies %}
+      {% set g = movie["genre"]|lower %}
       <div class="movie">
         <h3>{{ movie["title"] }}</h3>
-        <span>📅 {{ movie["year"] }}</span>
-        <div class="tag">🎭 {{ movie["genre"] }}</div>
+        <span>📅 {{ movie["year"] }}</span><br>
+
+        <div class="tag
+          {% if 'sci' in g %}genre-sci-fi
+          {% elif 'drama' in g %}genre-drama
+          {% elif 'romance' in g %}genre-romance
+          {% elif 'action' in g %}genre-action
+          {% elif 'comedy' in g %}genre-comedy
+          {% elif 'horror' in g %}genre-horror
+          {% else %}genre-default
+          {% endif %}">
+          🎭 {{ movie["genre"] }}
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -205,7 +218,7 @@ footer {
 </div>
 
 <footer>
-  © 2025 | MovieDb | Neo4j AuraDB
+  © 2025 · MovieDb · Designed & Developed by <b>Tengis</b>
 </footer>
 
 </body>
