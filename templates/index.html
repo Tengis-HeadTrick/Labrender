@@ -8,150 +8,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, #1e293b, #020617);
-  color: #fff;
-}
-
-/* ---------- HEADER ---------- */
-header {
-  padding: 25px 15px;
-  text-align: center;
-}
-
-header h1 {
-  font-size: 2.2rem;
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-header p {
-  opacity: 0.85;
-  font-size: 0.95rem;
-}
-
-/* ---------- CONTAINER ---------- */
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 15px;
-}
-
-/* ---------- GLASS ---------- */
-.glass {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(14px);
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 22px;
-  box-shadow: 0 15px 35px rgba(0,0,0,.45);
-}
-
-/* ---------- FORM ---------- */
-form {
-  display: grid;
-  gap: 12px;
-}
-
-input, button {
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-  font-size: 1rem;
-}
-
-input {
-  background: rgba(255,255,255,0.18);
-  color: #fff;
-}
-
-input::placeholder {
-  color: #cbd5f5;
-}
-
-button {
-  background: linear-gradient(135deg, #38bdf8, #6366f1);
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: .25s;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(99,102,241,.6);
-}
-
-/* ---------- GRID ---------- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 18px;
-}
-
-/* ---------- MOVIE CARD ---------- */
-.movie {
-  background: rgba(255,255,255,0.12);
-  border-radius: 16px;
-  padding: 18px;
-  transition: .25s;
-}
-
-.movie:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 35px rgba(0,0,0,.6);
-}
-
-.movie h3 {
-  margin: 0 0 5px;
-  font-size: 1.15rem;
-}
-
-.movie span {
-  font-size: .9rem;
-  opacity: .85;
-}
-
-/* ---------- GENRE TAGS ---------- */
-.tag {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: .8rem;
-  font-weight: 600;
-}
-
-/* genre colors */
-.genre-sci-fi { background: #0ea5e9; }
-.genre-drama { background: #f43f5e; }
-.genre-romance { background: #ec4899; }
-.genre-action { background: #f97316; }
-.genre-comedy { background: #22c55e; }
-.genre-horror { background: #7c3aed; }
-.genre-default { background: #64748b; }
-
-/* ---------- FOOTER ---------- */
-footer {
-  text-align: center;
-  padding: 20px 10px;
-  font-size: .85rem;
-  opacity: .7;
-}
-
-/* ---------- MOBILE ---------- */
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
-}
+*{box-sizing:border-box;font-family:Poppins,sans-serif}
+body{margin:0;background:radial-gradient(circle at top,#1e293b,#020617);color:#fff}
+header{text-align:center;padding:25px}
+header h1{font-size:2.2rem;background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header p{opacity:.8}
+.container{max-width:1100px;margin:auto;padding:15px}
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(14px);border-radius:18px;padding:20px;margin-bottom:20px;box-shadow:0 15px 35px rgba(0,0,0,.45)}
+form{display:grid;gap:12px}
+input,button{padding:14px;border-radius:12px;border:none;font-size:1rem}
+input{background:rgba(255,255,255,.18);color:#fff}
+button{background:linear-gradient(135deg,#38bdf8,#6366f1);color:#fff;font-weight:600}
+.show-all{background:linear-gradient(135deg,#22c55e,#16a34a)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.movie{background:rgba(255,255,255,.12);border-radius:16px;padding:18px}
+.tag{display:inline-block;margin-top:10px;padding:6px 14px;border-radius:999px;font-size:.8rem;font-weight:600}
+.genre-sci{background:#0ea5e9}
+.genre-drama{background:#f43f5e}
+.genre-romance{background:#ec4899}
+.genre-action{background:#f97316}
+.genre-comedy{background:#22c55e}
+.genre-horror{background:#7c3aed}
+.genre-default{background:#64748b}
+footer{text-align:center;padding:15px;font-size:.85rem;opacity:.7}
 </style>
 </head>
 
@@ -159,66 +38,67 @@ footer {
 
 <header>
   <h1>🎬 MovieDb</h1>
-  <p>Flask · Neo4j AuraDB · Render<br>👑 Owner: <b>Tengis</b></p>
+  <p>Flask · Neo4j · Render<br>👑 Owner: <b>Tengis</b></p>
 </header>
 
 <div class="container">
 
-  <!-- ADD MOVIE -->
-  <div class="glass">
-    <h2>➕ Add Movie</h2>
-    <form method="post" action="/add">
-      <input name="title" placeholder="Movie title" required>
-      <input name="year" type="number" placeholder="Release year" required>
-      <input name="genre" placeholder="Genre (Sci-Fi, Drama...)" required>
-      <button>Add Movie</button>
-    </form>
-  </div>
+<div class="glass">
+<h2>➕ Add Movie</h2>
+<form method="post" action="/add">
+<input name="title" placeholder="Movie title" required>
+<input type="number" name="year" placeholder="Year" required>
+<input name="genre" placeholder="Genre (Sci-Fi, Drama...)" required>
+<button>Add Movie</button>
+</form>
+</div>
 
-  <!-- FILTER -->
-  <div class="glass">
-    <h2>🔍 Filter by Genre</h2>
-    <form method="get" action="/filter">
-      <input name="genre" placeholder="Enter genre">
-      <button>Filter</button>
-    </form>
-  </div>
+<div class="glass">
+<h2>🔍 Filter</h2>
+<form method="get" action="/filter">
+<input name="genre" placeholder="Enter genre">
+<button>Filter</button>
+</form>
 
-  <!-- MOVIES -->
-  <div class="glass">
-    <h2>🎞 Movie Collection</h2>
+<form method="get" action="/" style="margin-top:10px">
+<button class="show-all">🎬 Бүх киног харах</button>
+</form>
+</div>
 
-    {% if movies %}
-    <div class="grid">
-      {% for movie in movies %}
-      {% set g = movie["genre"]|lower %}
-      <div class="movie">
-        <h3>{{ movie["title"] }}</h3>
-        <span>📅 {{ movie["year"] }}</span><br>
+<div class="glass">
+<h2>🎞 Movie Collection</h2>
 
-        <div class="tag
-          {% if 'sci' in g %}genre-sci-fi
-          {% elif 'drama' in g %}genre-drama
-          {% elif 'romance' in g %}genre-romance
-          {% elif 'action' in g %}genre-action
-          {% elif 'comedy' in g %}genre-comedy
-          {% elif 'horror' in g %}genre-horror
-          {% else %}genre-default
-          {% endif %}">
-          🎭 {{ movie["genre"] }}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    {% else %}
-      <p>No movies found.</p>
-    {% endif %}
-  </div>
+{% if movies %}
+<div class="grid">
+{% for movie in movies %}
+{% set g = movie["genre"]|lower %}
+<div class="movie">
+<h3>{{ movie["title"] }}</h3>
+<span>📅 {{ movie["year"] }}</span><br>
+
+<div class="tag
+{% if 'sci' in g %}genre-sci
+{% elif 'drama' in g %}genre-drama
+{% elif 'romance' in g %}genre-romance
+{% elif 'action' in g %}genre-action
+{% elif 'comedy' in g %}genre-comedy
+{% elif 'horror' in g %}genre-horror
+{% else %}genre-default
+{% endif %}">
+🎭 {{ movie["genre"] }}
+</div>
+</div>
+{% endfor %}
+</div>
+{% else %}
+<p>No movies found.</p>
+{% endif %}
+</div>
 
 </div>
 
 <footer>
-  © 2025 · MovieDb · Designed & Developed by <b>Tengis</b>
+© 2025 · Designed & Developed by <b>Tengis</b>
 </footer>
 
 </body>
